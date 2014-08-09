@@ -106,35 +106,23 @@ function init() {
   cameraLeft = new THREE.Camera();
   cameraRight = new THREE.Camera();
 
+
+  // test scene
   scene = new THREE.Scene();  
-  // var geometry = new THREE.BoxGeometry(10, 5, 15);
-  // var material = new THREE.MeshPhongMaterial({  // walls
-  //     overdraw: 0.5, 
-  //     color: 0xffFFff, 
-  //     specular: 0xffb400, 
-  //     shininess: 10, 
-  //     side: THREE.BackSide,
-  //     shading: THREE.FlatShading 
-  //   });
+  var geometry = new THREE.BoxGeometry(5, 2.5, 8);
+  var material = new THREE.MeshPhongMaterial({  // walls
+      overdraw: 0.5, 
+      color: 0xffFFff, 
+      specular: 0xffb400, 
+      shininess: 10, 
+      side: THREE.BackSide,
+      shading: THREE.FlatShading 
+    });
 
-  // var cube = new THREE.Mesh( geometry, material );
+  var cube = new THREE.Mesh( geometry, material );
 
-  // scene.add(cube);
+  scene.add(cube);
 
-
-  // yiles model import is chewed.  need to update model in real software to get rid of the need for these adjustments.
-  // var loader = new THREE.ColladaLoader();
-  // loader.load('assets/office.dae', function (result) {
-  //   var x = -1; 
-  //   var y = -1.2; 
-  //   var z = 0.9; 
-
-  //   var model = result.scene;
-  //   model.position.set(x, y, z);
-  //   model.rotation.x = -90 * Math.PI / 180;
-
-  //   scene.add(result.scene);
-  // });
 
   var heuristics = new THREE.Object3D();
     heuristics.position.set(0,0,-0.5)
@@ -164,16 +152,7 @@ function init() {
   light.position.set( 1, 1, 0 ); 
   scene.add( light );
 
-  // var light = new THREE.DirectionalLight( 0xffffff, .8 );
-  //       light.position.set( 2, 2, 20 );
-  //       scene.add( light );
-
-
-  // var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 ); 
-  // directionalLight.position.set( 1, 1, 0 ); 
-  // directionalLight.castShadow = true;
-
-  // scene.add( directionalLight );
+  // end test scene
 
 
   var canvas = document.getElementById('three_canvas');
@@ -182,7 +161,7 @@ function init() {
     antialias: true
   });
   renderer.shadowMapEnabled = true;
-  renderer.setClearColor( 0x202020 );
+  renderer.setClearColor( 0xffffff );
   renderer.setSize(renderWidth, renderHeight);
 }
 

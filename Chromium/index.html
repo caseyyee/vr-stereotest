@@ -275,32 +275,52 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
       renderer.setClearColor(0x202020, 1.0);
 
-        var heuristics = new THREE.Object3D();
-      heuristics.position.set(0,0,-0.5)
-      
+      // test scene
+      scene = new THREE.Scene();  
+      var geometry = new THREE.BoxGeometry(5, 2.5, 8);
+      var material = new THREE.MeshPhongMaterial({  // walls
+          overdraw: 0.5, 
+          color: 0xffFFff, 
+          specular: 0xffb400, 
+          shininess: 10, 
+          side: THREE.BackSide,
+          shading: THREE.FlatShading 
+        });
 
-    var rings = [
-      [0.398, 0x1DB992],
-      [0.26, 0x22CAF0],
-      [0.13, 0xF8BC4A],
-      [0.043, 0xE04540]
-    ]
+      var cube = new THREE.Mesh( geometry, material );
 
-    for ( var i = 0; i < rings.length; i++) {
-      var radius = rings[i][0];
-      var color = rings[i][1]
-      var circle = new THREE.Mesh(
-        new THREE.CircleGeometry( radius, 32 ),
-        new THREE.MeshBasicMaterial( {color: color, transparent: true, opacity: .5} )
-      );
-      circle.position.set( 0, 0, i * .001 ) //separate the circles slightly so they're easy to read
-      heuristics.add( circle );
-    }
+      scene.add(cube);
 
-    scene.add(heuristics);
-var light = new THREE.PointLight( 0xffffff, 1, 500 ); 
-  light.position.set( 1, 1, 0 ); 
-  scene.add( light );
+
+      var heuristics = new THREE.Object3D();
+        heuristics.position.set(0,0,-0.5)
+        
+
+      var rings = [
+        [0.398, 0x1DB992],
+        [0.26, 0x22CAF0],
+        [0.13, 0xF8BC4A],
+        [0.043, 0xE04540]
+      ]
+
+      for ( var i = 0; i < rings.length; i++) {
+        var radius = rings[i][0];
+        var color = rings[i][1]
+        var circle = new THREE.Mesh(
+          new THREE.CircleGeometry( radius, 32 ),
+          new THREE.MeshBasicMaterial( {color: color, transparent: true, opacity: .5} )
+        );
+        circle.position.set( 0, 0, i * .001 ) //separate the circles slightly so they're easy to read
+        heuristics.add( circle );
+      }
+
+      scene.add(heuristics);
+
+      var light = new THREE.PointLight( 0xffffff, 1, 500 ); 
+      light.position.set( 1, 1, 0 ); 
+      scene.add( light );
+
+      // end test scene
 
       //camera.position.z = 12;
 
